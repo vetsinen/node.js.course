@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
+
 const productModel = require('../productModel.js')
+const {orderModel, orderItemModel} = require('../cartModel.js')
 
 router.post('/product', (req, res) => {
         productModel.create({
@@ -9,21 +11,32 @@ router.post('/product', (req, res) => {
         }).then(res.send('thanks for adding ' + req.body.title))
     }
 )
-
-router.post('/encart/',(req, res)=>{
-    const productIds = req.body
+const encart = async (productIds) => {
     console.log('entering encart')
-    if (productIds.length===0){res.send('no products to add')}
-    const prId = productIds[0]
-    productModel.findByPk(prId).then(product=>{
-        console.log(`we found ${prId} with price ${product.get('price')}`)
+    let total = 0
+    const products = productIds.map(id => productModel.findByPk(id))
+    Promise.all(products).then(async values => {
+        values.forEach(value => total += value.get('price'))
+        console.log(`total in ${total}`)
+        await orderModel.create({
+            total: total,
+            isPending: true
+        })
+        return Promise.resolve(total)
     })
-    res.json(productIds)
+}
+
+router.post('/encart/', (req, res) => {
+    const productIds = req.body
+    if (productIds.length === 0) {
+        res.status(403)
+    }
+    encart(productIds).then(orderId => res.send(orderId))
 })
 
-router.patch('/purchase/:id',(req, res)=>{
+router.patch('/purchase/:id', (req, res) => {
     const purchaseId = req.params.id
-    res.send('entering to purchase '+purchaseId)
+    res.send('entering to purchase ' + purchaseId)
 })
 
 /* GET home page. */
