@@ -1,14 +1,15 @@
 var createError = require('http-errors');
-var express = require('express');
+const express = require('express')
+const app = express();
+const router = express.Router()
+
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
+var mallRouter = require('./routes/mall.js');
 var usersRouter = require('./routes/users');
 const productRouter = require('./routes/products.js')
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,20 +21,20 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/products', productRouter);
+app.use('/', mallRouter);
+// app.use('/users', usersRouter);
+// app.use('/products', productRouter);
 
 const { DataTypes } = require('sequelize');
-const sequelize = require('./storage')
+const connection = require('./connection')
 const product = require('./products.js')
 
-const order = sequelize.define('order', {
+const order = connection.define('order', {
   createdBy: {type: DataTypes.BOOLEAN},
   isPending: {type: DataTypes.BOOLEAN}
 })
 
-const orderItem = sequelize.define('orderItem', {
+const orderItem = connection.define('orderItem', {
   orderRef: {type: DataTypes.BOOLEAN}
 })
 

@@ -1,4 +1,4 @@
-sequelize = require('./storage')
+sequelize = require('./connection')
 const { Sequelize, DataTypes } = require('sequelize');
 
 const product = sequelize.define('product', {

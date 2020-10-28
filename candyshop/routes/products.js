@@ -1,17 +1,22 @@
 const router = require('express')()
 
-const sequelize = require('../storage.js')
+const connection = require('../connection.js')
 const productModel = require('../products.js')
 
 // /api/item
-router.route('/')
-    .get((req, res) => {
-        productModel.findAll().then((data)=>{
-            console.log(data)
-        })
-        res.json({data: 77})
+router.get('/', (req, res) => {
+    productModel.findAll({
+        attributes: ['title',]
+    }).then((data) => {
+        console.log(data)
+        res.json(JSON.stringify(data, null, 2))
     })
-    .post((req, res) => res.json(req.body))
+})
+
+router.post('/',(req, res)=>{
+    res.json(req.body)
+})
+// .post((req, res) => res.json(req.body))
 
 
 // /api/item/:id

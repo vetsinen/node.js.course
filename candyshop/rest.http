@@ -10,3 +10,17 @@ Content-Type: application/json
   "id": 999,
   "value": "content"
 }
+
+### GET request with a header
+GET http://localhost:3000/
+Accept: application/json
+
+### POST request with a header
+POST http://localhost:3000/encart/
+Content-Type: application/json
+
+[  1, 2, 1 , 7]
+
+### PATCH request with a header
+PATCH http://localhost:3000/purchase/4
+Accept: application/json
