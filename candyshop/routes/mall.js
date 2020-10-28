@@ -1,5 +1,14 @@
 const express = require('express');
 const router = express.Router();
+const productModel = require('../productModel.js')
+
+router.post('/products', (req, res) => {
+        productModel.create({
+            title: req.body.title,
+            price: req.body.price
+        }).then(res.send('thanks for adding ' + req.body.title))
+    }
+)
 
 router.post('/encart/',(req, res)=>{
     const products = [1,4,7]

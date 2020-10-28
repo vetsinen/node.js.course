@@ -9,7 +9,6 @@ var logger = require('morgan');
 
 var mallRouter = require('./routes/mall.js');
 var usersRouter = require('./routes/users');
-const productRouter = require('./routes/products.js')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,13 +21,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', mallRouter);
-app.use('/products', productRouter);
 // app.use('/users', usersRouter);
 
 
 const { DataTypes } = require('sequelize');
 const connection = require('./connection')
-const product = require('./products.js')
+const productModel = require('./productModel.js')
+const userModel = require('./userModel')
 
 const order = connection.define('order', {
   createdBy: {type: DataTypes.BOOLEAN},
@@ -41,9 +40,10 @@ const orderItem = connection.define('orderItem', {
 
 const syncTables =async ()=>{
   // await User.sync()
-  await product.sync()
-  await order.sync()
-  await orderItem.sync()
+  await productModel.sync({ force: true })
+  await userModel.sync({force: true})
+  // await order.sync()
+  // await orderItem.sync()
   console.log('db synced')
 }
 
