@@ -1,9 +1,9 @@
-sequelize = require('./connection')
+connection = require('./connection')
 const { Sequelize, DataTypes } = require('sequelize');
 
-const product = sequelize.define('product', {
+const product = connection.define('product', {
     title: {type: DataTypes.STRING},
-    isPending: {type: DataTypes.BOOLEAN}
+    price: {type: DataTypes.FLOAT}
 })
 
 module.exports = product
