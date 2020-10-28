@@ -8,7 +8,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var mallRouter = require('./routes/mall.js');
-var usersRouter = require('./routes/users');
+var userRouter = require('./routes/user.js');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', mallRouter);
-// app.use('/users', usersRouter);
+app.use('/user', userRouter);
 
 
 const { DataTypes } = require('sequelize');

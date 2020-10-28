@@ -33,3 +33,13 @@ Content-Type: application/json
 ### PATCH request with a header
 PATCH http://localhost:3000/purchase/4
 Accept: application/json
+
+### POST request with a body
+POST http://localhost:3000/user/signup/
+Content-Type: application/json
+
+{
+  "login": "xzibit",
+  "password": "Sc4ukl4ssti",
+  "budget": 0
+}
