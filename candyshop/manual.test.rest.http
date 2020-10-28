@@ -20,7 +20,7 @@ POST http://localhost:3000/product/
 Content-Type: application/json
 
 {
-  "title": "milk",
+  "title": "silk",
   "price": 120
 }
 
@@ -29,9 +29,8 @@ POST http://localhost:3000/encart/
 Content-Type: application/json
 
 [
-  42,
-  24,
-  42
+ 42,
+  24
 ]
 
 ### PATCH request with a header

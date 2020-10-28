@@ -15,23 +15,25 @@ const encart = async (productIds) => {
     console.log('entering encart')
     let total = 0
     const products = productIds.map(id => productModel.findByPk(id))
-    Promise.all(products).then(async values => {
-        values.forEach(value => total += value.get('price'))
-        console.log(`total in ${total}`)
-        await orderModel.create({
-            total: total,
-            isPending: true
-        })
-        return Promise.resolve(total)
+    values = await Promise.all(products)
+    values.forEach(value => total += value.get('price'))
+    console.log(`total in ${total}`)
+    await orderModel.create({
+        total: total,
+        isPending: true
     })
+    return Promise.resolve(total)
 }
 
 router.post('/encart/', (req, res) => {
     const productIds = req.body
+
     if (productIds.length === 0) {
-        res.status(403)
+        res.status(403).send('error: no products to add')
+        return
     }
-    encart(productIds).then(orderId => res.send(orderId))
+
+    encart(productIds).then(total => res.send('ok '+total))
 })
 
 router.patch('/purchase/:id', (req, res) => {

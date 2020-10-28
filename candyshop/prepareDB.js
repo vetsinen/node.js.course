@@ -28,7 +28,7 @@ const dbFeeder = async () => {
     await productModel.create({
         id: 24,
         title: 'milk',
-        price: 0.80,
+        price: 0.2,
     })
 
     await userModel.create(
