@@ -23,23 +23,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', mallRouter);
 app.use('/user', userRouter);
 
-
-const { DataTypes } = require('sequelize');
-const connection = require('./connection')
-const productModel = require('./productModel.js')
-const userModel = require('./userModel')
-
-const syncTables =async ()=>{
-  // await User.sync()
-  await productModel.sync({ force: true })
-  await userModel.sync({force: true})
-  // await order.sync()
-  // await orderItem.sync()
-  console.log('db synced')
-}
-
-syncTables()
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
