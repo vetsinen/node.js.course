@@ -22,8 +22,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', mallRouter);
+app.use('/products', productRouter);
 // app.use('/users', usersRouter);
-// app.use('/products', productRouter);
+
 
 const { DataTypes } = require('sequelize');
 const connection = require('./connection')

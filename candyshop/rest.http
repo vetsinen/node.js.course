@@ -15,6 +15,15 @@ Content-Type: application/json
 GET http://localhost:3000/
 Accept: application/json
 
+### POST request with a body
+POST http://localhost:3000/products/
+Content-Type: application/json
+
+{
+  "title": "lollipop",
+  "price": 120
+}
+
 ### POST request with a header
 POST http://localhost:3000/encart/
 Content-Type: application/json
