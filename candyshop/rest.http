@@ -1,0 +1,12 @@
+### GET request with a header
+GET http://localhost:3000/products/
+Accept: application/json
+
+### Send POST request with json body
+POST http://localhost:3000/products/
+Content-Type: application/json
+
+{
+  "id": 999,
+  "value": "content"
+}
