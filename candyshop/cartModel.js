@@ -2,7 +2,8 @@ connection = require('./connection')
 const { Sequelize, DataTypes } = require('sequelize');
 
 const orderModel = connection.define('order', {
-    isPending: {type: DataTypes.BOOLEAN}
+    isPending: {type: DataTypes.BOOLEAN},
+    total: {type: DataTypes.FLOAT},
 })
 
 const orderItemModel = connection.define('orderItem', {
@@ -10,4 +11,4 @@ const orderItemModel = connection.define('orderItem', {
     refProduct: {type: DataTypes.INTEGER}
 })
 
-module.exports = {orderModel}
+module.exports = {orderModel, orderItemModel}

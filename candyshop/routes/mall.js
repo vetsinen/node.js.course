@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const productModel = require('../productModel.js')
 
-router.post('/products', (req, res) => {
+router.post('/product', (req, res) => {
         productModel.create({
             title: req.body.title,
             price: req.body.price
@@ -11,9 +11,14 @@ router.post('/products', (req, res) => {
 )
 
 router.post('/encart/',(req, res)=>{
-    const products = [1,4,7]
+    const productIds = req.body
     console.log('entering encart')
-    res.json(req.body)
+    if (productIds.length===0){res.send('no products to add')}
+    const prId = productIds[0]
+    productModel.findByPk(prId).then(product=>{
+        console.log(`we found ${prId} with price ${product.get('price')}`)
+    })
+    res.json(productIds)
 })
 
 router.patch('/purchase/:id',(req, res)=>{

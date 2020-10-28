@@ -14,6 +14,10 @@ router.post('/signup', function(req, res, next) {
   })
 });
 
+router.get('/login/', (req, res) => {
+  res.send('attempt to login')
+})
+
 router.patch('/switch/:id', (req, res) => {
   user = userModel.findOne()//TODO
   const isAdmin = user.get('isAdmin')

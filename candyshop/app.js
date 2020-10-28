@@ -29,15 +29,6 @@ const connection = require('./connection')
 const productModel = require('./productModel.js')
 const userModel = require('./userModel')
 
-const order = connection.define('order', {
-  createdBy: {type: DataTypes.BOOLEAN},
-  isPending: {type: DataTypes.BOOLEAN}
-})
-
-const orderItem = connection.define('orderItem', {
-  orderRef: {type: DataTypes.BOOLEAN}
-})
-
 const syncTables =async ()=>{
   // await User.sync()
   await productModel.sync({ force: true })
