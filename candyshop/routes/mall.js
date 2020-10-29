@@ -29,7 +29,6 @@ const encart = async (productIds) => {
 
 router.post('/encart/',isRegular, (req, res) => {
     const productIds = req.body
-
     if (productIds.length === 0) {
         res.status(403).send('error: no products to add')
         return
@@ -40,9 +39,13 @@ router.post('/encart/',isRegular, (req, res) => {
 router.patch('/purchase/:id',isRegular, async (req, res) => {
     const purchaseId = req.params.id
     console.log('entering to purchase ' + purchaseId)
+    const order = await orderModel.findByPk(purchaseId)
+    if (!order.get('isPending')){
+        res.status(400).json({error:'already taken'})
+    }
     const login = getVerifiedToken(req).login
     const user = await userModel.findOne({where: {login: login}})
-    const order = await orderModel.findByPk(purchaseId)
+
     const budget = user.get('budget')
     if (budget<order.get('total')){
         res.status(400).json({error:'get rich or die tryin'})
