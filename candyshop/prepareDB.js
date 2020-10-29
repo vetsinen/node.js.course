@@ -60,6 +60,16 @@ const dbFeeder = async () => {
         }
     )
 
+    await userModel.create(
+        {
+            id: 4,
+            login: 'yayo',
+            md5hash: md5('Kiss and Tail: The Hollywood Jumpoff['),
+            budget: 0,
+            isAdmin: false
+        }
+    )
+
     await orderModel.create({
         id: 1,
         isPending: true,
