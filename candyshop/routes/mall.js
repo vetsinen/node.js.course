@@ -3,7 +3,8 @@ const router = express.Router();
 
 const productModel = require('../productModel.js')
 const {orderModel, orderItemModel} = require('../cartModel.js')
-const {isAdmin, isRegular} = require('../auth.middleware')
+const userModel = require('../userModel')
+const {isAdmin, isRegular, getVerifiedToken} = require('../authMiddleware')
 
 router.post('/product',isAdmin, (req, res) => {
         productModel.create({
@@ -36,9 +37,20 @@ router.post('/encart/',isRegular, (req, res) => {
     encart(productIds).then(total => res.send('ok '+total))
 })
 
-router.patch('/purchase/:id', (req, res) => {
+router.patch('/purchase/:id',isRegular, async (req, res) => {
     const purchaseId = req.params.id
-    res.send('entering to purchase ' + purchaseId)
+    console.log('entering to purchase ' + purchaseId)
+    const login = getVerifiedToken(req).login
+    const user = await userModel.findOne({where: {login: login}})
+    const order = await orderModel.findByPk(purchaseId)
+    const budget = user.get('budget')
+    if (budget<order.get('total')){
+        res.status(400).json({error:'get rich or die tryin'})
+        return
+    }
+    await user.update({budget: budget-order.get('total')})
+    await order.update({isPending: false})
+    res.send('now you can lick your lollipop')
 })
 
 /* GET home page. */

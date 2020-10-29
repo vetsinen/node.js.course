@@ -1,19 +1,13 @@
-### GET request with a header
-GET http://localhost:3000/products/
-Accept: application/json
+### to use this manual test suite open it IDE like WebStorm or simlia
 
-### Send POST request with json body
-POST http://localhost:3000/products/
+### GET request
+GET http://localhost:3000/user/login/
 Content-Type: application/json
 
 {
-  "id": 999,
-  "value": "content"
+  "login": "drdre",
+  "password": "N.W.A and Ruthless Records"
 }
-
-### GET request with a header
-GET http://localhost:3000/
-Accept: application/json
 
 ### POST request with a body
 POST http://localhost:3000/product/
@@ -23,6 +17,15 @@ Content-Type: application/json
 {
   "title": "silk",
   "price": 120
+}
+
+### GET request
+GET http://localhost:3000/user/login/
+Content-Type: application/json
+
+{
+  "login": "olivia",
+  "password": "Surviving Compton"
 }
 
 ### POST request with a header
@@ -35,8 +38,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6Im9saXZpY
   24
 ]
 
+### GET request
+GET http://localhost:3000/user/login/
+Content-Type: application/json
+
+{
+  "login": "curtis",
+  "password": "Move to Aftermath Entertainment"
+}
+
 ### PATCH request with a header
-PATCH http://localhost:3000/purchase/4
+PATCH http://localhost:3000/purchase/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6ImN1cnRpcyIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MDM5NTM1NDZ9.Om19FTuVJs0mDyQRO67QzFVGB02hMvQLp6iVE3mQ9OI
 Accept: application/json
 
 ### POST request with a body
@@ -45,15 +58,7 @@ Content-Type: application/json
 
 {
   "login": "olivia5",
-  "password": "Sc4ukl4ssti",
+  "password": "Surviving Compton",
   "budget": 0
 }
 
-### GET request
-GET http://localhost:3000/user/login/
-Content-Type: application/json
-
-{
-  "login": "olivia",
-  "password": "Surviving Compton"
-}

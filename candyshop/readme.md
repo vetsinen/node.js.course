@@ -1,3 +1,7 @@
+to install packages type npm install
+to setup test db type npm preparedb
+to launch app type: npm start
+
 We need a simple API with two level of access (admin and customer).
 	
 	Person can sign up and login, person can change his role

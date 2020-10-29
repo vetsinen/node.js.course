@@ -11,7 +11,7 @@ const getVerifiedToken = (req) => {
         console.log(decoded)
         return(decoded)
     } catch(err) {
-        console.log('bad token provided')
+        console.log('bad or apsent token provided')
     }
 }
 
@@ -39,4 +39,4 @@ const isRegular = (req, res, next) => {
     res.status(400).send('you have no customer rights')
 }
 
-module.exports = {isAdmin, isRegular}
+module.exports = {isAdmin, isRegular, getVerifiedToken}
