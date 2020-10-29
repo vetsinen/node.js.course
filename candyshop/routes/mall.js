@@ -3,8 +3,9 @@ const router = express.Router();
 
 const productModel = require('../productModel.js')
 const {orderModel, orderItemModel} = require('../cartModel.js')
+const {isAdmin, isRegular} = require('../auth.middleware')
 
-router.post('/product', (req, res) => {
+router.post('/product',isAdmin, (req, res) => {
         productModel.create({
             title: req.body.title,
             price: req.body.price
@@ -25,14 +26,13 @@ const encart = async (productIds) => {
     return Promise.resolve(total)
 }
 
-router.post('/encart/', (req, res) => {
+router.post('/encart/',isRegular, (req, res) => {
     const productIds = req.body
 
     if (productIds.length === 0) {
         res.status(403).send('error: no products to add')
         return
     }
-
     encart(productIds).then(total => res.send('ok '+total))
 })
 

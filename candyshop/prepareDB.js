@@ -35,7 +35,7 @@ const dbFeeder = async () => {
         {
             id: 1,
             login: 'drdre',
-            md5hash: md5('Aftermath'),
+            md5hash: md5('N.W.A and Ruthless Records'),
             budget: 100000,
             isAdmin: true
         })
@@ -44,7 +44,7 @@ const dbFeeder = async () => {
         {
             id: 2,
             login: 'curtis',
-            md5hash: md5('shady records'),
+            md5hash: md5('Move to Aftermath Entertainment'),
             budget: 10,
             isAdmin: false
         }

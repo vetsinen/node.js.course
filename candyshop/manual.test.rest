@@ -17,6 +17,7 @@ Accept: application/json
 
 ### POST request with a body
 POST http://localhost:3000/product/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6Im9saXZpYSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MDM5NDY5NTl9.VxWQxX5Py9MXBQyZwue7V6bgvZz1S3Kh8ZRiQ-9Vr6Q
 Content-Type: application/json
 
 {
@@ -27,6 +28,7 @@ Content-Type: application/json
 ### POST request with a header
 POST http://localhost:3000/encart/
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6Im9saXZpYSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MDM5NDY5NTl9.VxWQxX5Py9MXBQyZwue7V6bgvZz1S3Kh8ZRiQ-9Vr6Q
 
 [
  42,
@@ -42,11 +44,16 @@ POST http://localhost:3000/user/signup/
 Content-Type: application/json
 
 {
-  "login": "olivia",
+  "login": "olivia5",
   "password": "Sc4ukl4ssti",
   "budget": 0
 }
 
 ### GET request
 GET http://localhost:3000/user/login/
-Accept: application/json
+Content-Type: application/json
+
+{
+  "login": "olivia",
+  "password": "Surviving Compton"
+}
