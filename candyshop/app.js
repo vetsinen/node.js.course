@@ -20,6 +20,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+const leaks = [];
+
+app.get('/bloatMyServer', (req, res) => {
+  const redundantObj = {
+    memory: "leaked",
+    joke: "meta"
+  };
+
+  [...Array(10000)].map(i => leaks.push(redundantObj));
+
+  res.status(200).send({size: leaks.length})
+});
+
 app.use('/', mallRouter);
 app.use('/user', userRouter);
 
