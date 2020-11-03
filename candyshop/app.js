@@ -18,15 +18,11 @@ app.set('view engine', 'ejs');
 var addRequestId = require('express-request-id')();
 app.use(addRequestId);
 
-app.use(morgan(':reqid :method :url :status :user-agent'));
+app.use(morgan(':reqid :method :url :status'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('/req', function (req, res, next) {
-  res.send(req.id);
-});
 
 app.use('/', mallRouter);
 app.use('/user', userRouter);

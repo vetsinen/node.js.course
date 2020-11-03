@@ -22,21 +22,18 @@ router.post('/signup', function (req, res, next) {
 });
 
 const login = async (req, res) => {
-    console.log('attempt to login')
+    logger.info( `${req.id} - attempt to login`);
     const candidate = await userModel.findOne({where: {login: req.body.login}})
     if (!candidate) {
         res.status(401).send('login not found');
         return
     }
-    console.log('we found you',candidate.get('login'),'your status is ', candidate.get('isAdmin'))
 
-    console.log(md5(req.body.password),candidate.get('md5hash'))
     if (md5(req.body.password) !== candidate.get('md5hash')) {
         res.status(401).send('wrong password');
         return
     }
-    console.log(`secret ${secret}`)
-    //token = '__no token__'
+
     const token = 'Bearer ' + jwt.sign({
         login: candidate.get('login'),
         isAdmin: candidate.get('isAdmin')

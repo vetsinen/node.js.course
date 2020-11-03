@@ -38,7 +38,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6ImRyZHJlI
 Content-Type: application/json
 
 {
-  "title": "silk",
+  "title": "b2all",
   "price": 120
 }
 
@@ -110,7 +110,7 @@ POST http://localhost:3000/user/signup/
 Content-Type: application/json
 
 {
-  "login": "olivia5",
+  "login": "olivia9",
   "password": "Surviving Compton",
   "budget": 0
 }
