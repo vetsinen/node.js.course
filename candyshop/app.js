@@ -3,9 +3,9 @@ const express = require('express')
 const app = express();
 const router = express.Router()
 
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
 var mallRouter = require('./routes/mall.js');
 var userRouter = require('./routes/user.js');
@@ -14,11 +14,19 @@ var userRouter = require('./routes/user.js');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+var addRequestId = require('express-request-id')();
+app.use(addRequestId);
+
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/req', function (req, res, next) {
+  res.send(req.id);
+});
 
 app.use('/', mallRouter);
 app.use('/user', userRouter);
