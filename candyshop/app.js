@@ -5,7 +5,8 @@ const router = express.Router()
 
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const logger = require('morgan');
+const morgan = require('morgan');
+morgan.token('reqid', (req, res) => req.id)
 
 var mallRouter = require('./routes/mall.js');
 var userRouter = require('./routes/user.js');
@@ -17,8 +18,7 @@ app.set('view engine', 'ejs');
 var addRequestId = require('express-request-id')();
 app.use(addRequestId);
 
-
-app.use(logger('dev'));
+app.use(morgan(':reqid :method :url :status :user-agent'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

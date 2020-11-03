@@ -66,7 +66,7 @@ client.test("Request executed successfully", function() {
 ### POST request with a header
 POST http://localhost:3000/encart/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6Im9saXZpYSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MDM5NDY5NTl9.VxWQxX5Py9MXBQyZwue7V6bgvZz1S3Kh8ZRiQ-9Vr6Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6Im9saXZpYSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MDQ0MDAyNTl9.KHxpBAMeJQkFh-nl_1xI5_SAcrTaJE3k9iYr3aK8pwY
 
 [
  42,
