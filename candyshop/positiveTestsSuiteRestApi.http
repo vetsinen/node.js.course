@@ -1,0 +1,123 @@
+### to use this test suite open it IDE like WebStorm or simlia
+
+### GET request
+GET http://localhost:3000/
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+
+### GET request to login app
+GET http://localhost:3000/user/login/
+Content-Type: application/json
+
+{
+  "login": "drdre",
+  "password": "N.W.A and Ruthless Records"
+}
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+
+client.test("Response content-type is json", function() {
+  var type = response.contentType.mimeType;
+  client.assert(type === "application/json", "Expected 'application/json' but received '" + type + "'");
+});
+
+%}
+
+
+
+### POST request with a body
+POST http://localhost:3000/product/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6ImRyZHJlIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjAzOTU2Nzc5fQ.tQYMgB9JhQ6iiDRa4-0m4NfrKFzQ2r8HJ2kKKQvUj1Q
+Content-Type: application/json
+
+{
+  "title": "silk",
+  "price": 120
+}
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+
+### GET request
+GET http://localhost:3000/user/login/
+Content-Type: application/json
+
+{
+  "login": "olivia",
+  "password": "Surviving Compton"
+}
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+
+### POST request with a header
+POST http://localhost:3000/encart/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6Im9saXZpYSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MDM5NDY5NTl9.VxWQxX5Py9MXBQyZwue7V6bgvZz1S3Kh8ZRiQ-9Vr6Q
+
+[
+ 42,
+  24
+]
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+
+### GET request
+GET http://localhost:3000/user/login/
+Content-Type: application/json
+
+{
+  "login": "curtis",
+  "password": "Move to Aftermath Entertainment"
+}
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+
+### PATCH request with a header
+PATCH http://localhost:3000/purchase/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6ImN1cnRpcyIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MDM5NTM1NDZ9.Om19FTuVJs0mDyQRO67QzFVGB02hMvQLp6iVE3mQ9OI
+Accept: application/json
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+
+### POST request with a body
+POST http://localhost:3000/user/signup/
+Content-Type: application/json
+
+{
+  "login": "olivia5",
+  "password": "Surviving Compton",
+  "budget": 0
+}
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+
